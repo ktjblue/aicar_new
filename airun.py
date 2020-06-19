@@ -20,6 +20,7 @@ if __name__ == '__main__':
 
     start_flag = False
 
+
     #testing speed variation
     speed_change_flag = False
 
@@ -35,8 +36,8 @@ if __name__ == '__main__':
     #c.set(cv2.CAP_PROP_FPS, 15)
 
     while(True):
-        _, full_image = c.read()
-        # full_image = cv2.resize(full_image, (320,240))
+        _,full_image = c.read()
+        #full_image = cv2.resize(full_image, (320,240))
         image = scipy.misc.imresize(full_image[cfg.modelheight:], [66, 200]) / 255.0
         image1 = scipy.misc.imresize(full_image[cfg.modelheight:], [66*2, 200*2])
 
@@ -73,27 +74,31 @@ if __name__ == '__main__':
             continue
         
         if start_flag:
-            if cfg.wheel == 0:
-                hw.motor_two_speed(0)
+            if cfg.wheel == cfg.STOP:
                 hw.motor_one_speed(0)
-
-            if cfg.wheel == 1:   #left turn
-                hw.motor_two_speed(cfg.minturn_speed)
+                hw.motor_two_speed(0)
+            elif cfg.wheel == cfg.LEFT:   #left turn
                 hw.motor_one_speed(cfg.maxturn_speed)
-            
-
-            if cfg.wheel == 2:
-                hw.motor_two_speed(cfg.normal_speed_left)
+                hw.motor_two_speed(cfg.minturn_speed)
+            elif cfg.wheel == cfg.UP:
                 hw.motor_one_speed(cfg.normal_speed_right)
-
-            if cfg.wheel == 3:   #right turn
-                hw.motor_two_speed(cfg.maxturn_speed)
+                hw.motor_two_speed(cfg.normal_speed_left)
+            elif cfg.wheel == cfg.RIGHT:   #right turn
                 hw.motor_one_speed(cfg.minturn_speed)
+                hw.motor_two_speed(cfg.maxturn_speed)
+            elif cfg.wheel == cfg.UP_LEFT:   
+                hw.motor_one_speed(cfg.normal_speed_right)
+                hw.motor_two_speed(round(cfg.normal_speed_left/cfg.slow_turn_factor))
+            elif cfg.wheel == cfg.UP_RIGHT:   #right turn
+                hw.motor_one_speed(round(cfg.normal_speed_right/cfg.slow_turn_factor))
+                hw.motor_two_speed(cfg.normal_speed_left)
+            else:
+                assert False
         
         else:
             hw.motor_one_speed(0)
             hw.motor_two_speed(0)
-            cfg.wheel = 0
+            cfg.wheel = cfg.STOP
 
         
 hw.motor_clean()
