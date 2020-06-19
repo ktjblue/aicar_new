@@ -5,10 +5,6 @@
 width = 320  # Video width requested from camera
 height = 240  # Video height requested from camera
 
-#final_width = 200
-final_width = 100
-final_height = 66
-
 wheel = 0  #0:stop, 1:left, 2:strait, 3:right
 
 recording = False
