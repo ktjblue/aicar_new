@@ -1,0 +1,15 @@
+git-bash로 github에 업로드 할 예정이였지만, buf- size문제로 계속된 업로드가 안되고 있습니다.
+
+필요 코드만 올려놨고, 만약 buf-size가 해결된다면 추가로 올려놓겠습니다.
+
+
+[참고자료]
+
+ - GPU서버 jupyter notebook 
+     http://120.115.229.72:12345/?token=e630f9698659a0b90f25eec92efa9c1b8042570560654846
+ 
+ - 학생 및 교수님 피드백 자료
+     https://sites.google.com/a/g-mail.hallym.ac.kr/taewoon/home/bigcapton/autocar
+     
+ - 캡스톤 디자인 github 주소(공지)
+     https://github.com/lab-lwc/20201_CapstoneDesign
